@@ -19,12 +19,12 @@ except IndexError:
 if(os.path.isfile(photo_path) == False):
 	sys.exit("File not found: " + photo_path)
 
-# Add your API Key and API Secret
+# Store API Key and API Secret in the file api_creds_path in the script directory
+# Separate the API Key and the API Secret with a ":" (colon)
 api_creds_path = os.path.dirname(__file__) + '/' + api_creds_file
 if(os.path.isfile(api_creds_path) == False):
 	sys.exit("File not found: " + api_creds_path)
 
-# Store API Key and API Secret in api_creds_path in the script directory
 (api_key, api_secret) = open(api_creds_path).read().strip().split(':')
 #print "Using API Key '" + api_key + "' and API Secret '" + api_secret + "'"
 
@@ -47,9 +47,8 @@ try:
 except AttributeError:
 	sys.exit("Attribute 'tag' missing in result")
 
-if tag == 'photoid':
-	print 'http://www.flickr.com/photos/upload/edit/?ids=' + photo.text
-else:
-	print 'http://www.flickr.com/upload+failed'
+if tag != 'photoid':
+	sys.exit("Cannot retrieve photoid from response")
 
+print 'http://www.flickr.com/photos/upload/edit/?ids=' + photo.text
 sys.exit(0)
