@@ -1,7 +1,5 @@
 #!/usr/bin/env python
 
-# Inspired from http://nullege.com/codes/search/flickrapi.FlickrAPI.get_token_part_two
-
 import os
 import sys
 import re
